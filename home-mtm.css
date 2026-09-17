@@ -1,0 +1,47 @@
+/* Homepage-only entry into the public MTM library. */
+.home-mtm-entry {
+  max-width:1164px;
+  margin:0 auto 70px;
+  padding:38px 42px;
+  background:#eeeede;
+  color:#293f38;
+  border-radius:10px;
+  display:flex;
+  gap:35px;
+  align-items:center;
+  justify-content:space-between}
+
+.home-mtm-entry .kicker {
+  color:#52674a}
+.home-mtm-entry h2 {
+  font:400 34px/1.15 Georgia,serif;
+  margin:12px 0}
+.home-mtm-entry p {
+  max-width:640px;
+  color:#526052;
+  font-size:15px}
+.home-mtm-actions {
+  flex-shrink:0;
+  display:flex;
+  flex-direction:column;
+  gap:16px}
+.home-mtm-entry .button {
+  background:#385a48;
+  margin:0}
+.home-mtm-entry .text-link {
+  color:#385a48;
+  text-decoration-color:#82916d;
+  font-size:13px}
+
+@media(max-width:800px) {
+  .home-mtm-entry {
+  margin:0 20px 45px;
+  padding:28px;
+  flex-direction:column;
+  align-items:start}
+.home-mtm-entry h2 {
+  font-size:30px}
+.home-mtm-actions {
+  flex-shrink:1}
+}
+

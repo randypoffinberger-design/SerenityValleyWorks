@@ -1,0 +1,28 @@
+/* Pre-launch controls remain hidden even if a page theme changes. */
+.store-downloads[hidden] {
+  display:none!important}
+
+.store-downloads {
+  max-width:1180px;
+  margin:40px auto;
+  padding:28px}
+
+.store-buttons {
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:20px}
+
+.store-button {
+  display:inline-flex;
+  padding:12px 20px;
+  min-height:48px;
+  align-items:center;
+  border:1px solid currentColor;
+  border-radius:7px;
+  font:600 14px/1.5 system-ui,sans-serif}
+
+.store-button:focus-visible {
+  outline:3px solid currentColor;
+  outline-offset:4px}
+
