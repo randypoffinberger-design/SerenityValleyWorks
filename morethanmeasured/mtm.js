@@ -1,4 +1,19 @@
 // Navigation and filtering enhance pages that remain readable without JavaScript.
+// Record the marketing-to-app transition without delaying or changing navigation.
+document.addEventListener('click', event => {
+  const link = event.target.closest?.('a[href]');
+  if (!link || typeof window.gtag !== 'function') return;
+  const url = new URL(link.href, location.href);
+  if (url.origin !== 'https://randypoffinberger-design.github.io' || !/^\/Free-to-be-me\/(?:index\.html)?$/.test(url.pathname)) return;
+  try {
+    window.gtag('event', 'open_mtm', {
+      app_name: 'More Than Measured',
+      link_url: 'https://randypoffinberger-design.github.io/Free-to-be-me/',
+      source_page: location.pathname.replace(/index\.html$/, ''),
+      transport_type: 'beacon'
+    });
+  } catch {}
+});
 const year = document.getElementById('year');
 if (year) year.textContent = new Date().getFullYear();
 const menu = document.querySelector('.menu');
