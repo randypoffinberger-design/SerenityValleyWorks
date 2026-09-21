@@ -32,8 +32,13 @@
 <h2>Request deletion by email</h2>
 <p>Email <a class="contact-email" href="mailto:morethanmeasured@gmail.com?subject=MTM%20account%20deletion%20request">morethanmeasured@gmail.com</a> with the subject <strong>MTM account deletion request</strong>.</p>
 <p>Include the email address associated with your MTM account and say that you want your account and associated data deleted. If possible, send the request from that address. We may require verification before processing the request. Do not send your password.</p>
-<a class="button" href="mailto:morethanmeasured@gmail.com?subject=MTM%20account%20deletion%20request">Email an account deletion request</a>
-<p class="support-note">If the button does not open your email app, copy the address above into your preferred email service.</p>
+<div class="contact-actions">
+<a class="button" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=morethanmeasured%40gmail.com&amp;su=MTM%20account%20deletion%20request" target="_blank" rel="noopener">Open in Gmail</a>
+<a class="secondary-button" href="mailto:morethanmeasured@gmail.com?subject=MTM%20account%20deletion%20request">Open default email app</a>
+<button class="secondary-button" id="copy-email" type="button" hidden style="background:transparent;color:inherit;font:inherit;cursor:pointer">Copy email address</button>
+</div>
+<p id="copy-status" class="support-note" role="status"></p>
+<p class="support-note">Gmail opens in your browser and may ask you to sign in. The default email app option requires an email app configured on your device. You can also copy the address into any email service. Opening a draft does not send a request; review your message and send it when ready.</p>
 </div>
 <h2>Delete from inside MTM</h2>
 <p>If you still have access to the app, you can also request account deletion under <strong>Account &amp; Household</strong>.</p>
@@ -44,4 +49,17 @@
 <p>For another 30 days after removal, MTM keeps a salted value derived from the verified email address to limit repeated account creation. This is not a usable account or a copy of your email address. Stripe may retain billing records separately. Server deletion does not remove copies you downloaded or stored on your devices.</p>
 <p>Local backups rotate separately. Offsite backups retain up to 14 daily, 8 weekly, and 12 monthly snapshots; earlier account data may remain until those backups expire.</p>
 <p>Read our <a class="text-link" href="privacy.html">Privacy Policy</a> for the full data-retention details, or <a class="text-link" href="morethanmeasured/support.html">contact MTM support</a> for help with your request.</p>
-</section></main><footer><div>© <span id="year"></span> Serenity Valley Works LLC. All rights reserved.</div><div class="footer-links"><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></footer></body></html>
+</section></main><footer><div>© <span id="year"></span> Serenity Valley Works LLC. All rights reserved.</div><div class="footer-links"><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></footer><script>
+const copyEmail = document.getElementById('copy-email');
+copyEmail.hidden = false;
+copyEmail.addEventListener('click', async () => {
+  const status = document.getElementById('copy-status');
+  try {
+    await navigator.clipboard.writeText('morethanmeasured@gmail.com');
+    status.textContent = 'Email address copied.';
+  } catch {
+    status.textContent = 'Please select and copy this address: morethanmeasured@gmail.com';
+  }
+});
+</script>
+</body></html>
