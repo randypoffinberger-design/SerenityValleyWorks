@@ -1,5 +1,6 @@
 /* Pre-launch controls remain hidden even if a page theme changes. */
-.store-downloads[hidden] {
+.store-downloads[hidden],
+.store-button[hidden] {
   display:none!important}
 
 .store-downloads {
