@@ -69,15 +69,22 @@ class SiteTests(unittest.TestCase):
         self.assertEqual(resources.count('class="article-card '), 10)
         self.assertEqual(len(list((ROOT/'morethanmeasured/articles').glob('*.html'))), 10)
 
-    def test_prelaunch_downloads_are_inert_and_hidden(self):
+    def test_released_and_prelaunch_downloads(self):
         for app in ['morethanmeasured', 'serenitykitchen']:
             page = self.pages[(ROOT/app/'index.html').resolve()]
             sections = [a for t, a in page.tags if 'data-app-downloads' in a]
             self.assertEqual(len(sections), 1)
-            self.assertIn('hidden', sections[0])
+            self.assertEqual('hidden' in sections[0], app == 'serenitykitchen')
             controls = [a for t, a in page.tags if 'data-store' in a]
             self.assertEqual({a['data-store'] for a in controls}, {'apple','google','windows'})
             for control in controls:
+                if app == 'morethanmeasured' and control['data-store'] == 'windows':
+                    self.assertEqual(control.get('href'), 'https://apps.microsoft.com/detail/9pbh50v7gsc1')
+                    self.assertNotIn('hidden', control)
+                    self.assertNotIn('aria-disabled', control)
+                    continue
+                if app == 'morethanmeasured':
+                    self.assertIn('hidden', control)
                 self.assertNotIn('href', control)
                 self.assertEqual(control.get('aria-disabled'), 'true')
 

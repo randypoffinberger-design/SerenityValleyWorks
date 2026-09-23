@@ -22,7 +22,7 @@ Current state: **not an affiliate**. Do not add affiliate tags or the present-te
 
 ## Enable a download at launch
 
-Both app landing pages contain a `section[data-app-downloads]` with `hidden`. Inside are separate Apple, Google Play, and Windows controls identified by `data-store`. They intentionally have no `href` and remain outside the visible UI and accessibility tree. Their styling is in `store-downloads.css`.
+MTM is available for Windows at https://apps.microsoft.com/detail/9pbh50v7gsc1. Its download section is visible with an active Windows link; Apple and Google Play controls remain individually hidden and disabled until release. Mobile web-app installation instructions remain available. Computer users are directed to the Microsoft Store on Windows and the browser on Mac. Kitchen download controls remain hidden and inactive. Styling is in `store-downloads.css`.
 
 For a release:
 
