@@ -78,8 +78,9 @@ class SiteTests(unittest.TestCase):
             controls = [a for t, a in page.tags if 'data-store' in a]
             self.assertEqual({a['data-store'] for a in controls}, {'apple','google','windows'})
             for control in controls:
-                if app == 'morethanmeasured' and control['data-store'] == 'windows':
-                    self.assertEqual(control.get('href'), 'https://apps.microsoft.com/detail/9pbh50v7gsc1')
+                if app == 'morethanmeasured' and control['data-store'] in ('windows', 'google'):
+                    expected = {'windows': 'https://apps.microsoft.com/detail/9pbh50v7gsc1', 'google': 'https://play.google.com/store/apps/details?id=com.serenityvalleyworks.morethanmeasured'}
+                    self.assertEqual(control.get('href'), expected[control['data-store']])
                     self.assertNotIn('hidden', control)
                     self.assertNotIn('aria-disabled', control)
                     continue

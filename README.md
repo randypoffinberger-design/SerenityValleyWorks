@@ -22,7 +22,7 @@ Current state: **not an affiliate**. Do not add affiliate tags or the present-te
 
 ## Enable a download at launch
 
-MTM is available for Windows at https://apps.microsoft.com/detail/9pbh50v7gsc1. Its download section is visible with an active Windows link; Apple and Google Play controls remain individually hidden and disabled until release. Mobile web-app installation instructions remain available. Computer users are directed to the Microsoft Store on Windows and the browser on Mac. Kitchen download controls remain hidden and inactive. Styling is in `store-downloads.css`.
+MTM is available for Android at https://play.google.com/store/apps/details?id=com.serenityvalleyworks.morethanmeasured and Windows at https://apps.microsoft.com/detail/9pbh50v7gsc1. Its download section is visible with active Google Play and Windows links; the Apple control remains individually hidden and disabled until release. Mobile web-app installation instructions remain available. Computer users are directed to the Microsoft Store on Windows and the browser on Mac. Kitchen download controls remain hidden and inactive. Styling is in `store-downloads.css`.
 
 For a release:
 
