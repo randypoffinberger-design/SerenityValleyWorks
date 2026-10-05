@@ -56,7 +56,7 @@ class SiteTests(unittest.TestCase):
 
     def test_mtm_accessibility_and_static_content(self):
         pages = [p for p in self.pages.values() if 'morethanmeasured' in p.path.parts]
-        self.assertEqual(len(pages), 14)
+        self.assertEqual(len(pages), 15)
         for page in pages:
             tags = page.tags
             self.assertEqual(sum(t == 'h1' for t, a in tags), 1, page.path.name)
@@ -88,6 +88,32 @@ class SiteTests(unittest.TestCase):
                     self.assertIn('hidden', control)
                 self.assertNotIn('href', control)
                 self.assertEqual(control.get('aria-disabled'), 'true')
+
+    def test_mtm_onboarding_information(self):
+        text = (ROOT/'morethanmeasured/index.html').read_text(encoding='utf-8')
+        for phrase in ['Try the web app', 'No automatic charge', '$12.99/month', '$99.99/year', 'Create or join a household', 'Verify your email', 'Babysitter registration is free', 'fictional test information']:
+            self.assertIn(phrase, text)
+        for image in ['mtm-first-task-phone.png', 'mtm-care-phone.png']:
+            self.assertIn(image, text)
+            self.assertTrue((ROOT/'assets'/image).is_file())
+        self.assertNotIn('tail96598f', text)
+        self.assertNotIn('trycloudflare', text)
+        self.assertNotIn('still in development', text)
+        self.assertIn("awaiting Apple's approval", text)
+
+    def test_product_directory(self):
+        page = self.pages[(ROOT/'morethanmeasured/product-links.html').resolve()]
+        self.assertEqual(len({attrs['data-product-id'] for tag, attrs in page.tags if tag == 'li' and 'data-product-id' in attrs}), 147)
+        self.assertEqual(sum(tag == 'section' and attrs.get('class') == 'directory-section' for tag, attrs in page.tags), 6)
+        self.assertEqual(sum(tag == 'section' and attrs.get('class') == 'directory-subgroup' for tag, attrs in page.tags), 11)
+        text = page.path.read_text(encoding='utf-8')
+        self.assertIn('Sensory Support <span class="category-count">(78)</span>', text)
+        for name in ['Swings &amp; Suspended Equipment', 'Balls &amp; Balance', 'Balance &amp; Climbing', 'Active Movement', 'Positioning &amp; Resistance', 'Tactile Exploration', 'Clothing &amp; Bedding', 'Sound &amp; Headphones', 'Visual &amp; Calm Spaces', 'Oral Care', 'Books &amp; Learning']:
+            self.assertIn(name, text)
+        self.assertIn('product-search', page.ids)
+        for other in self.pages.values():
+            if 'morethanmeasured' in other.path.parts:
+                self.assertTrue(any(tag == 'a' and attrs.get('href', '').endswith('product-links.html') for tag, attrs in other.tags), str(other.path))
 
     def test_no_affiliate_claims_or_tags(self):
         for path in self.pages:

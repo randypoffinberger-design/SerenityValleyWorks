@@ -1,0 +1,13 @@
+.trial-summary { font-size:15px; line-height:1.65; }
+.access-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:32px; margin:28px 0; }
+.access-grid h3 { margin-bottom:12px; }
+.access-grid .text-link { display:inline-block; margin-top:14px; }
+.access-note { border-top:1px solid #cbd8dc; padding-top:20px; }
+.setup-steps { display:flex; flex-wrap:wrap; gap:14px 34px; padding-left:20px; margin:28px 0; }
+.app-preview-section { background:#eef4f7; }
+.app-preview-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:48px; max-width:860px; margin:auto; }
+.app-preview-grid figure { min-width:0; }
+.app-preview-grid img { width:100%; height:520px; object-fit:contain; object-position:top; }
+.app-preview-grid figcaption { margin-top:22px; }
+.app-preview-grid h3 { margin-bottom:10px; }
+@media(max-width:800px) { .access-grid { grid-template-columns:1fr; gap:24px; } .app-preview-grid { grid-template-columns:1fr; gap:40px; } .app-preview-grid img { height:470px; } }
