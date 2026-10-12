@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://serenityvalleyworks.com/sitemap.xml
